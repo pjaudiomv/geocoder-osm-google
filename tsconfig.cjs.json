@@ -3,6 +3,8 @@
   "compilerOptions": {
     "module": "commonjs",
     "outDir": "./dist/cjs",
-    "declaration": false
+    "declaration": false,
+    "moduleResolution": "node",
+    "target": "es2018"
   }
 } 
