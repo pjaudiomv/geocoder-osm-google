@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geocoder Example</title>
+    <script src="https://unpkg.com/geocoder-osm-google@latest/dist/umd/index.js"></script>
+</head>
+<body>
+    <h1>Geocoder Example</h1>
+    
+    <div>
+        <h2>Forward Geocoding</h2>
+        <input type="text" id="address" placeholder="Enter an address" value="1600 Pennsylvania Avenue, Washington DC">
+        <button onclick="geocodeAddress()">Geocode</button>
+        <pre id="forwardResult"></pre>
+    </div>
+
+    <div>
+        <h2>Reverse Geocoding</h2>
+        <input type="number" id="lat" placeholder="Latitude" value="38.8976763">
+        <input type="number" id="long" placeholder="Longitude" value="-77.0365298">
+        <button onclick="reverseGeocode()">Reverse Geocode</button>
+        <pre id="reverseResult"></pre>
+    </div>
+
+    <script>
+        async function geocodeAddress() {
+            const address = document.getElementById('address').value;
+            const resultElement = document.getElementById('forwardResult');
+            
+            try {
+                const geocoder = new Geocoder(address);
+                const result = await geocoder.geocode();
+                
+                if (typeof result === 'string') {
+                    resultElement.textContent = `Error: ${result}`;
+                } else {
+                    resultElement.textContent = JSON.stringify(result, null, 2);
+                }
+            } catch (error) {
+                resultElement.textContent = `Error: ${error.message}`;
+            }
+        }
+
+        async function reverseGeocode() {
+            const lat = parseFloat(document.getElementById('lat').value);
+            const long = parseFloat(document.getElementById('long').value);
+            const resultElement = document.getElementById('reverseResult');
+            
+            try {
+                const geocoder = new Geocoder({ lat, long });
+                const result = await geocoder.reverseGeocode();
+                
+                if (typeof result === 'string') {
+                    resultElement.textContent = `Error: ${result}`;
+                } else {
+                    resultElement.textContent = JSON.stringify(result, null, 2);
+                }
+            } catch (error) {
+                resultElement.textContent = `Error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html> 
