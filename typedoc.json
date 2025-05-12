@@ -1,0 +1,7 @@
+{
+	"entryPoints": ["src/geocoding.ts"],
+	"out": "docs",
+	"exclude": ["**/node_modules/**"],
+	"theme": "default",
+	"name": "Geocoder Documentation"
+}

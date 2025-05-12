@@ -1,0 +1,24 @@
+name: test
+on:
+  push:
+    branches-ignore: ['main']
+
+jobs:
+  test-ts:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: checkout 🛒
+        uses: actions/checkout@v4
+
+      - name: node 20 ❇️
+        uses: actions/setup-node@v4.0.0
+        with:
+          node-version: 22
+
+      - name: make npm ♦️
+        run: |
+          npm ci
+
+      - name: make test-js 🧪
+        run: |
+          npm run test
