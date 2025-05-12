@@ -73,8 +73,10 @@ export type GeocodeResult = {
 	borough: string;
 	street: string;
 	zip: string;
-	long: number;
-	lat: number;
+	location: {
+		lat: number;
+		long: number;
+	};
 	rawResponse?: google.maps.GeocoderResult | null;
 };
 
@@ -182,8 +184,10 @@ export class Geocoder {
 				borough: components.sublocality_level_1 || '',
 				street: `${components.street_number || ''} ${components.route || ''}`,
 				zip: components.postal_code || '',
-				long: location.lng(),
-				lat: location.lat(),
+				location: {
+					lat: location.lat(),
+					long: location.lng(),
+				},
 				rawResponse: results[0]
 			};
 		} else {
@@ -252,10 +256,6 @@ export class Geocoder {
 			const reverseData = await reverseResponse.json();
 			const address = reverseData.address || {};
 
-			// Ensure we're using the correct coordinates from the reverse geocoding response
-			const resultLat = parseFloat(reverseData.lat);
-			const resultLon = parseFloat(reverseData.lon);
-
 			return {
 				nation: address.country || '',
 				province: address.state || '',
@@ -264,8 +264,10 @@ export class Geocoder {
 				borough: address.borough || '',
 				street: `${address.house_number || ''} ${address.road || ''}`.trim(),
 				zip: address.postcode || '',
-				long: resultLon,
-				lat: resultLat,
+				location: {
+					lat: parseFloat(reverseData.lat),
+					long: parseFloat(reverseData.lon),
+				},
 				rawResponse: forwardData ? forwardData[0] : reverseData
 			};
 		} catch (error) {
