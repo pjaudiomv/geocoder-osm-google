@@ -18,7 +18,15 @@
     "nominatim",
     "typescript"
   ],
-  "author": "",
+  "author": "pjaudiomv",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pjaudiomv/geocoder-osm-google.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pjaudiomv/geocoder-osm-google/issues"
+  },
+  "homepage": "https://github.com/pjaudiomv/geocoder-osm-google#readme",
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^29.5.12",
@@ -34,5 +42,8 @@
   "files": [
     "dist",
     "README.md"
-  ]
+  ],
+  "publishConfig": {
+    "provenance": true
+  }
 }
