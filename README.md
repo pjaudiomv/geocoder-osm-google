@@ -51,64 +51,6 @@ const result = await geocoder.reverseGeocode("google");
 console.log(result.street); // "1600 Pennsylvania Avenue NW"
 ```
 
-## API Reference
-
-### Geocoder Class
-
-The main class for performing geocoding operations.
-
-#### Constructor
-
-```typescript
-constructor(addressOrLocation: string | GeoLocation)
-```
-
-- `addressOrLocation`: Either a string address for forward geocoding or a GeoLocation object for reverse geocoding
-
-#### Methods
-
-##### geocode(provider?: 'google' | 'nominatim')
-
-Performs forward geocoding (address to coordinates).
-
-- `provider`: Optional provider selection ('google' or 'nominatim', defaults to 'nominatim')
-- Returns: Promise<GeocodeResult | string>
-
-##### reverseGeocode(provider?: 'google' | 'nominatim')
-
-Performs reverse geocoding (coordinates to address).
-
-- `provider`: Optional provider selection ('google' or 'nominatim', defaults to 'nominatim')
-- Returns: Promise<GeocodeResult | string>
-
-### Types
-
-#### GeocodeResult
-
-```typescript
-type GeocodeResult = {
-    nation: string;
-    province: string;
-    county: string;
-    town: string;
-    borough: string;
-    street: string;
-    zip: string;
-    long: number;
-    lat: number;
-    rawResponse?: google.maps.GeocoderResult | null;
-};
-```
-
-#### GeoLocation
-
-```typescript
-type GeoLocation = {
-    lat: number;
-    long: number;
-};
-```
-
 ## Error Handling
 
 All methods return either a GeocodeResult object or an error message string.
@@ -134,39 +76,6 @@ if (typeof result === "string") {
 - No API key required
 - Subject to usage limits (max 1 request per second)
 - Must follow Nominatim's usage policy
-
-## Best Practices
-
-1. **Provider Selection**
-   - Use Nominatim for development and low-volume applications
-   - Use Google Maps for production and high-volume applications
-   - Consider implementing a fallback mechanism between providers
-
-2. **Rate Limiting**
-   - Implement rate limiting when using Nominatim
-   - Respect Google Maps API quotas and limits
-
-3. **Error Handling**
-   - Always implement proper error handling
-   - Consider implementing retry logic for transient failures
-
-4. **Caching**
-   - Consider implementing caching for frequently requested locations
-   - Be mindful of cache invalidation for frequently changing data
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 

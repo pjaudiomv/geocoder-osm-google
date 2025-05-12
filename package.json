@@ -1,6 +1,6 @@
 {
   "name": "geocoder-osm-google",
-  "version": "1.0.0",
+  "version": "latest",
   "description": "A TypeScript utility for forward and reverse geocoding using Google Maps or Nominatim (OpenStreetMap)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
