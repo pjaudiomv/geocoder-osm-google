@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geocoder Example</title>
-    <script
-            src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"
-            async
-            defer
-    ></script>
+    <script>
+        const key = atob('QUl6YVN5Q1RSalNZaEU2ODVTMFFIYlJURHFSbDFZS0Q0NEtYU0t3');
+        const script = document.createElement('script');
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${key}`;
+        script.async = true;
+        document.head.appendChild(script);
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/geocoder-osm-google@1.0.5/dist/umd/index.js"></script>
     <script>
         window.Geocoder = GeocoderOSMGoogle;
